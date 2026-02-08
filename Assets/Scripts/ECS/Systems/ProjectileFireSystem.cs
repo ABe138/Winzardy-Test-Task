@@ -7,6 +7,7 @@ using Unity.Transforms;
 
 [BurstCompile]
 [UpdateAfter(typeof(TargetAcquisitionSystem))]
+[UpdateBefore(typeof(TransformSystemGroup))]
 public partial struct ProjectileFireSystem : ISystem
 {
     public void OnCreate(ref SystemState state)

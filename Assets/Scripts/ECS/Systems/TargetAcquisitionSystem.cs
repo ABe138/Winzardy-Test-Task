@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 
 [BurstCompile]
+[UpdateBefore(typeof(TransformSystemGroup))]
 public partial struct TargetAcquisitionSystem : ISystem
 {
     public void OnCreate(ref SystemState state)
