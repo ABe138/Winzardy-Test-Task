@@ -6,6 +6,7 @@ using Unity.Transforms;
 [UpdateAfter(typeof(EnemyFollowPlayerSystem))]
 public partial struct EnemyAttackSystem : ISystem
 {
+    [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<PlayerTag>();
