@@ -30,6 +30,9 @@ public class EnemyAuthoring : MonoBehaviour
     public float AvoidanceStrength = 1f;
     public LayerMask ObstacleLayer;
 
+    public GameObject DropPrefab;
+    public float DropChance;
+
     private class Baker : Baker<EnemyAuthoring>
     {
         public override void Bake(EnemyAuthoring authoring)
@@ -50,6 +53,14 @@ public class EnemyAuthoring : MonoBehaviour
                 AvoidanceStrength = authoring.AvoidanceStrength,
                 ObstacleLayerMask = (uint)authoring.ObstacleLayer.value
             });
+            if (authoring.DropPrefab != null) 
+            {
+                AddComponent(entity, new DropData
+                {
+                    DropChance = authoring.DropChance,
+                    DropEntity = GetEntity(authoring.DropPrefab, TransformUsageFlags.Dynamic)
+                });
+            }
         }
     }
 }

@@ -18,6 +18,24 @@ public partial struct DamageProcessingSystem : ISystem
             {
                 SystemAPI.SetComponentEnabled<DestroyEntityFlag>(entity, true);
             }
+
+            if (SystemAPI.HasComponent<UpdateHealthUIFlag>(entity)) 
+            { 
+                SystemAPI.SetComponentEnabled<UpdateHealthUIFlag>(entity, true);
+            }
+        }
+    }
+}
+
+[UpdateInGroup(typeof(PresentationSystemGroup))]
+public partial struct UpdatePlayerHealthUISystem : ISystem
+{
+    public void OnUpdate(ref SystemState state)
+    {
+        foreach (var(currentHealth, maxHealth, updateFlag) in SystemAPI.Query<RefRO<CurrentHitPoints>, RefRO<MaxHitPoints>, EnabledRefRW<UpdateHealthUIFlag>>())
+        {
+            PlayerHUDManager.Instance.UpdatePlayerHealthText(currentHealth.ValueRO.Value, maxHealth.ValueRO.Value);
+            updateFlag.ValueRW = false;
         }
     }
 }
