@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
+[BurstCompile]
 public partial struct EnemySpawnSystem : ISystem
 {
     private Random _random;

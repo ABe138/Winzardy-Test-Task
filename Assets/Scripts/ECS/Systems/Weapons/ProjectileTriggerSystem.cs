@@ -17,8 +17,6 @@ public partial struct ProjectileTriggerSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        var ecb = new EntityCommandBuffer(Allocator.TempJob);
-
         var projectileLookup = SystemAPI.GetComponentLookup<ProjectileData>(true);
         var enemyLookup = SystemAPI.GetComponentLookup<EnemyTag>(true);
         var destroyEntityLookup = SystemAPI.GetComponentLookup<DestroyEntityFlag>();
@@ -33,8 +31,6 @@ public partial struct ProjectileTriggerSystem : ISystem
         }.Schedule(SystemAPI.GetSingleton<SimulationSingleton>(), state.Dependency);
 
         state.Dependency.Complete();
-        ecb.Playback(state.EntityManager);
-        ecb.Dispose();
     }
 }
 

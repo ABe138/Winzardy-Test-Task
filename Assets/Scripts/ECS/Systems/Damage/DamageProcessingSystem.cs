@@ -5,6 +5,12 @@ using Unity.Entities;
 public partial struct DamageProcessingSystem : ISystem
 {
     [BurstCompile]
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<IncomingDamage>();
+    }
+
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         foreach (var (hitPoints, damageBuffer, entity) in SystemAPI.Query<RefRW<CurrentHitPoints>, DynamicBuffer<IncomingDamage>>().WithDisabled<DestroyEntityFlag>().WithEntityAccess())

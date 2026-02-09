@@ -20,8 +20,8 @@ public partial struct EntityDropSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        var beginEcbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
-        var beginEcb = beginEcbSystem.CreateCommandBuffer(state.WorldUnmanaged);
+        var ecbSystem = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
+        var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
 
         foreach (var (_, dropData, entity) in SystemAPI.Query<DestroyEntityFlag, DropData>().WithEntityAccess())
         {
@@ -29,8 +29,8 @@ public partial struct EntityDropSystem : ISystem
 
             var spawnPosition = SystemAPI.GetComponentRO<LocalTransform>(entity).ValueRO.Position;
 
-            var dropEntity = beginEcb.Instantiate(dropData.DropEntity);
-            beginEcb.SetComponent(dropEntity, LocalTransform.FromPosition(spawnPosition));
+            var dropEntity = ecb.Instantiate(dropData.DropEntity);
+            ecb.SetComponent(dropEntity, LocalTransform.FromPosition(spawnPosition));
         }
     }
 }

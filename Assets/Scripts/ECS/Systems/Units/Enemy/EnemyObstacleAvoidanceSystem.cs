@@ -6,8 +6,10 @@ using Unity.Physics;
 using Unity.Transforms;
 
 [UpdateAfter(typeof(EnemyFollowPlayerSystem))]
+[BurstCompile]
 public partial struct EnemyObstacleAvoidanceSystem : ISystem
 {
+    [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<PhysicsWorldSingleton>();

@@ -2,6 +2,7 @@
 using Unity.Transforms;
 using UnityEngine;
 
+[UpdateAfter(typeof(TransformSystemGroup))]
 public partial class CameraFollowPlayerSystem : SystemBase
 {
     private Transform _target;

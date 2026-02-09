@@ -6,7 +6,6 @@ using Unity.Physics;
 using Unity.Transforms;
 
 [UpdateAfter(typeof(TargetAcquisitionSystem))]
-[UpdateBefore(typeof(TransformSystemGroup))]
 [BurstCompile]
 public partial struct ProjectileFireSystem : ISystem
 {
@@ -23,7 +22,9 @@ public partial struct ProjectileFireSystem : ISystem
         var playerPos = SystemAPI.GetComponentRO<LocalTransform>(playerEntity).ValueRO.Position;
 
         var deltaTime = SystemAPI.Time.DeltaTime;
-        var ecb = new EntityCommandBuffer(Allocator.Temp);
+
+        var ecbSystem = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+        var ecb = ecbSystem.CreateCommandBuffer(state.WorldUnmanaged);
 
         foreach (var (weaponData, config, target, weaponEntity) in SystemAPI.Query<RefRW<WeaponData>, RefRO<ProjectileWeaponConfig>, RefRO<NearestEnemyTarget>>().WithAll<WeaponTag>().WithEntityAccess())
         {
@@ -69,8 +70,5 @@ public partial struct ProjectileFireSystem : ISystem
                 });
             }
         }
-
-        ecb.Playback(state.EntityManager);
-        ecb.Dispose();
     }
 }
