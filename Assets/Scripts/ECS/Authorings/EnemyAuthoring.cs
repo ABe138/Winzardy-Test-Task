@@ -27,17 +27,20 @@ public struct ObstacleAvoidanceData : IComponentData
 
 public class EnemyAuthoring : MonoBehaviour
 {
+    [Header("Attack")]
     public float AttackRange = 1f;
     public float AttackCooldown = 1f;
     public int AttackDamage = 5;
 
+    [Header("Drop")]
+    public GameObject DropPrefab;
+    public float DropChance;
+
+    [Header("Obstacle Avoidance Settings")]
     public float ObstacleDetectionDistance = 3f;
     public float SideRayAngle = 45f;
     public float AvoidanceStrength = 1f;
     public LayerMask ObstacleLayer;
-
-    public GameObject DropPrefab;
-    public float DropChance;
 
     private class Baker : Baker<EnemyAuthoring>
     {
