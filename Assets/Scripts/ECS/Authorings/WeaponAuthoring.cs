@@ -49,8 +49,6 @@ public class WeaponAuthoring : MonoBehaviour
     public int ProjectileCount = 1;
     public float SpreadAngle = 15f;
 
-    public float AreaRadius = 3f;
-
     private class Baker : Baker<WeaponAuthoring>
     {
         public override void Bake(WeaponAuthoring authoring)

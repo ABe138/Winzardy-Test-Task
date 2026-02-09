@@ -137,7 +137,6 @@ MonoBehaviour:
   ProjectileLifetime: 2
   ProjectileCount: 5
   SpreadAngle: 15
-  AreaRadius: 3
 --- !u!1 &3627371912195919549
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +234,7 @@ GameObject:
   - component: {fileID: 4171440697879877856}
   - component: {fileID: 2585700575355748551}
   m_Layer: 7
-  m_Name: Weapon_PeaShooter
+  m_Name: Weapon_P-Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +274,6 @@ MonoBehaviour:
   ProjectileLifetime: 2
   ProjectileCount: 1
   SpreadAngle: 15
-  AreaRadius: 3
 --- !u!1 &4222154744512228759
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +398,7 @@ Transform:
   - {fileID: 6307865789072135631}
   - {fileID: 4171440697879877856}
   - {fileID: 6225024670573012210}
+  - {fileID: 5285809343607614820}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8774471579897702290
@@ -479,3 +478,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cac49565d95cc34e809a03cd9784f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7881339161380255308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5285809343607614820}
+  - component: {fileID: 6341620610740893826}
+  m_Layer: 7
+  m_Name: Weapon_RailGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5285809343607614820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881339161380255308}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5809150057157908564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6341620610740893826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881339161380255308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b2a714d2d98d9459dcafc9d50de47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseDamage: 95
+  Cooldown: 1.2
+  ProjectilePrefab: {fileID: 5547720820637338610, guid: 37c6e6c7eba88c44bbcc7f912d915826, type: 3}
+  ProjectileSpeed: 36
+  ProjectileLifetime: 1.5
+  ProjectileCount: 1
+  SpreadAngle: 0
